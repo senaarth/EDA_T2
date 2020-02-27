@@ -26,7 +26,7 @@ typedef struct listAluno{
     nodeAluno *head;
 }listAluno;
 
-//Fun��es que criam as estruturas de n� e de lista
+//Funções que criam as estruturas de nó e de lista
 listDisciplina *criaListaDisc(){
     listDisciplina *list = (listDisciplina*)malloc(sizeof(listDisciplina));
     list->head = NULL;
@@ -71,7 +71,7 @@ nodeDisciplina *criaNodeDisc(){
     getchar();
     printf("\nNome da Disciplina: ");
     scanf("%[^\n]", node->nome);
-    //Entrando num do-while para n�o permitir o cadastro de disciplinas com men��o invalida
+    //Entrando num do-while para não permitir o cadastro de disciplinas com menção invalida
     do{
         printf("Mencao Obtida: ");
         scanf("%s", node->mencao);
@@ -93,7 +93,7 @@ nodeDisciplina *criaNodeDisc(){
     return node;
 }
 
-//Fun�oes de Push
+//Funçoes de Push
 void pushAluno(listAluno *list, nodeAluno *node){
     if(node){
         node->next = list->head;
@@ -109,7 +109,7 @@ void pushDisc(listDisciplina *list, nodeDisciplina *node){
     }
 }
 
-//Fun�oes isEmty - retornam verdadeiro caso as listas estejam vazias
+//Funçoes isEmty - retornam verdadeiro caso as listas estejam vazias
 bool isEmptyAluno(listAluno *list){
     return (list->size == 0);
 }
@@ -117,7 +117,7 @@ bool isEmptyDisc(listDisciplina *list){
     return (list->size == 0);
 }
 
-//Fun��es que printam as listas
+//Funções que printam as listas
 void printaListaAlunos(listAluno *list){
     system("clear");
     if(isEmptyAluno(list)){
@@ -152,7 +152,7 @@ void printaListaDisc(listDisciplina *list){
     }
 }
 
-//Fun��es pop - removem primeiro integrante das listas
+//Funçoes pop - removem primeiro integrante das listas
 void popAluno(listAluno *list){
     system("clear");
     if(list->size == 0){
@@ -162,7 +162,7 @@ void popAluno(listAluno *list){
 
     nodeAluno *aux = list->head;
     list->head = aux->next; //Transforma segundo integrante em head da lista
-    free(aux); //Limpa o espa�o de memoria referente ao head antigo
+    free(aux); //Limpa o espaço de memoria referente ao head antigo
     list->size--;
 }
 void popDisciplina(listDisciplina *list){
@@ -174,11 +174,11 @@ void popDisciplina(listDisciplina *list){
 
     nodeDisciplina *aux = list->head;
     list->head = aux->next; //Transforma segundo integrante em head da lista
-    free(aux); //Limpa o espa�o de memoria referente ao head antigo
+    free(aux); //Limpa o espaço de memoria referente ao head antigo
     list->size--;
 }
 
-//Fun��es atPos - retornam n� encontrado em indice especifico recebido do usuario
+//Funções atPos - retornam nó encontrado em indice especifico recebido do usuario
 nodeAluno *alunoAtPos(listAluno *list, int index){
     if(isEmptyAluno(list)){
         printf("\nSem Alunos Cadastrados!\n");
@@ -202,7 +202,7 @@ nodeAluno *alunoAtPos(listAluno *list, int index){
     return aux;
 }
 
-//Fun�oes de Busca - Retornam n� com atributo desejado
+//Funçoes de Busca - Retornam nó com atributo desejado
 nodeAluno *buscaNomeAluno(listAluno *list, char *nome){
     if(isEmptyAluno(list)){ //Verificando se existem alunos cadastrados antes de iniciar pesquisa
         printf("\nSem Alunos Registrados\n");
@@ -214,8 +214,8 @@ nodeAluno *buscaNomeAluno(listAluno *list, char *nome){
     int contador = 0, i = 0, op;
 
     while(aux){
-        busca = strstr(aux->nome, nome); //compara nome recebido com nome do n� atual
-        if(busca == NULL){ //retorno � null se n�o for encontrado n� com parte do nome igual ao nome pesquisado
+        busca = strstr(aux->nome, nome); //compara nome recebido com nome do nó atual
+        if(busca == NULL){ //retorna null se não for encontrado nó com parte do nome igual ao nome pesquisado
         }else{
             contador++; //variavel responsavel por receber quantos alunos possuem parte do nome igual a pesquisa
         }
@@ -227,7 +227,7 @@ nodeAluno *buscaNomeAluno(listAluno *list, char *nome){
         return NULL;
     }
 
-     //Lista de alunos que ir� receber todos os alunos que possuem o nome pesquisado em pelo menos parte de seu nome
+     //Lista de alunos que irá receber todos os alunos que possuem o nome pesquisado em pelo menos parte de seu nome
     nodeAluno **nomesRepetidos = (nodeAluno**)malloc(sizeof(nodeAluno*)*contador);
     aux = list->head;
 
@@ -270,8 +270,8 @@ nodeAluno *buscaEmail(listAluno *list, char *email){
     int contador = 0, i = 0, op;
 
     while(aux){
-        busca = strstr(aux->email, email);//compara nome recebido com email do n� atual
-        if(busca == NULL){ //retorno � null se n�o for encontrado n� com parte do nome igual ao nome pesquisado
+        busca = strstr(aux->email, email);//compara nome recebido com email do nó atual
+        if(busca == NULL){ //retorna null se não for encontrado nó com parte do nome igual ao nome pesquisado
         }else{
             contador++;//variavel responsavel por receber quantos alunos possuem parte do nome igual a pesquisa
         }
@@ -283,7 +283,7 @@ nodeAluno *buscaEmail(listAluno *list, char *email){
         return NULL;
     }
 
-    //Lista de alunos que ir� receber todos os alunos que possuem o nome pesquisado em pelo menos parte de seu email
+    //Lista de alunos que irá receber todos os alunos que possuem o nome pesquisado em pelo menos parte de seu email
     nodeAluno **nomesRepetidos = (nodeAluno**)malloc(sizeof(nodeAluno*)*contador);
     aux = list->head;
 
@@ -333,7 +333,7 @@ nodeDisciplina *buscaDisciplina(listDisciplina *list, char *pesquisa){
 
     while(aux){
         busca = strstr(aux->nome, pesquisa); //Compara nome pesquisado com nome da disciplina atual
-        if(busca == NULL){//retorno � null se n�o for encontrado n� com parte do nome igual ao nome pesquisado
+        if(busca == NULL){//retorno é null se não for encontrado nó com parte do nome igual ao nome pesquisado
         }else{
             contador++; //Recebe quantas disciplinas possuem nome pesquisado em parte do seu nome
         }
@@ -376,14 +376,14 @@ nodeDisciplina *buscaDisciplina(listDisciplina *list, char *pesquisa){
     return NULL;
 }
 
-//Fun��es Edit - Editam todos os atributos de n� especifico
+//Funções Edit - Editam todos os atributos de nó especifico
 void editDisciplina(nodeDisciplina *busca){
     if(busca){
     system("clear");
     printf("Novo Nome: ");
     getchar();
     scanf("%[^\n]", busca->nome);
-    //Inicia do-while que nao permite registro de men��es invalidas
+    //Inicia do-while que nao permite registro de menções invalidas
     do{
         printf("Nova Mencao: ");
         scanf("%s", busca->mencao);
@@ -410,7 +410,7 @@ void editAluno(nodeAluno *node){
     }
 }
 
-//Fun��o indexOf - Retorna indice de n� na lista
+//Funçãoo indexOf - Retorna indice de nó na lista
 int indexOfAluno(listAluno *list, nodeAluno *node){
     if(isEmptyAluno(list)){ //verificando se a lista esta vazia antes do processo
         char continuar;
@@ -419,12 +419,12 @@ int indexOfAluno(listAluno *list, nodeAluno *node){
         getchar();
         scanf("%c", &continuar);
         system("clear");
-        return -1; //retorno negativo significar� n� nao encontrado
+        return -1; //retorno negativo significa nó nao encontrado
     }
 
     int index = -1;
 
-    if(node){ //verificando se o n� � valido
+    if(node){ //verificando se o nó é valido
         nodeAluno *aux = list->head;
         int i = 0;
 
@@ -470,9 +470,9 @@ int indexOfDisciplina(listDisciplina *list, nodeDisciplina *node){
     return index;
 }
 
-//Fun��es Erase - removem n� especifico de listas
+//Funções Erase - removem nó especifico de listas
 void eraseAluno(listAluno *list, nodeAluno *node){
-    if(isEmptyAluno(list)){ //Verificando primeiramente se j� existem alunos cadastrados
+    if(isEmptyAluno(list)){ //Verificando primeiramente se já existem alunos cadastrados
         char continuar;
         printf("Lista Sem Alunos!\n");
         printf("Aperte ENTER para continuar.\n");
@@ -542,7 +542,7 @@ void eraseDisciplina(listDisciplina *list, nodeDisciplina *node){
     }
 }
 
-//Fun��o Filtra Disciplina - Mostra todas as disciplinas que receberam men��o informada
+//Função Filtra Disciplina - Mostra todas as disciplinas que receberam menção informada
 void *filtraDisciplina(listDisciplina *list, char *pesquisa){
     if(isEmptyDisc(list)){ //Verificando primeiramente se o aluno tem disciplinas cadastradas
         printf("\nAluno sem Disciplinas!\n");
@@ -563,7 +563,7 @@ void *filtraDisciplina(listDisciplina *list, char *pesquisa){
         busca = strstr(aux->mencao, pesquisa);
         if(busca == NULL){
         }else{
-            contador++; //contando todas as disciplinas que receberam a men��o pesquisada
+            contador++; //contando todas as disciplinas que receberam a menção pesquisada
         }
         aux = aux->next;
     }
@@ -600,9 +600,9 @@ void *filtraDisciplina(listDisciplina *list, char *pesquisa){
     return NULL;
 }
 
-//Fun��o relatorioGeral - mostra relatorio do aluno como pedido (numero de disciplinas cursadas, de reprova�oes, aprova��es e trancamentos
+//Função relatorioGeral - mostra relatorio do aluno como pedido (numero de disciplinas cursadas, de reprovações, aprovações e trancamentos
 void relatorioGeral(listDisciplina *list){
-    if(isEmptyDisc(list)){ //Verificando se o aluno j� tem disciplinas cadastradas
+    if(isEmptyDisc(list)){ //Verificando se o aluno já tem disciplinas cadastradas
         printf("Aluno sem Disciplinas Cursadas!\n");
         printf("Aperte ENTER para continuar.\n");
         getchar();
@@ -612,7 +612,7 @@ void relatorioGeral(listDisciplina *list){
         return;
     }
 
-    int aprovacoes = 0, reprovacoes = 0, trancamentos = 0; //contadores pra cada tipo de men��o
+    int aprovacoes = 0, reprovacoes = 0, trancamentos = 0; //contadores pra cada tipo de menção
 
     nodeDisciplina *aux = list->head;
 
@@ -673,7 +673,7 @@ void freeLista(listAluno *list){
     if(isEmptyAluno(list)){
         return;
     }
-    //Se a lista tiver apenas um n� so precisamos dar free no head
+    //Se a lista tiver apenas um nó so precisamos dar free no head
     if(list->size == 1){
         nodeAluno *aux = list->head;
         freeDisciplinas(aux->head);
@@ -690,8 +690,4 @@ void freeLista(listAluno *list){
         aux = aux2;
         aux2 = aux2->next;
     }
-    /* Professor, ap�s colocar um contador dentro do while para verificar quantas voltas
-    a estrutura de repeti��o faz, percebi que sempre faltava uma volta, ou seja por algum motivo
-    o ultimo n� da lista n�o � excluido (n�o importa o tamanho da lista), por�m esse foi o melhor
-    que consegui fazer, se puder me explicar onde est� meu erro depois, agrade�o.*/
 }

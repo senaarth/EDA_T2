@@ -44,12 +44,12 @@ void menuAluno(nodeAluno *node){
         //CADASTRO-------------------------------------------------------------------------------------------------------
         case 1:
             system("clear");
-            nodeDisciplina *disciplina = criaNodeDisc(); //Chama fun��o que cria nova disciplina
-            pushDisc(node->head, disciplina); // Insere n� na lista
+            nodeDisciplina *disciplina = criaNodeDisc(); //Chama função que cria nova disciplina
+            pushDisc(node->head, disciplina); // Insere nó na lista
         break;
         //LISTAGEM DE DISCIPLINAS-----------------------------------------------------------------------------------------
         case 2:
-            printaListaDisc(node->head); // Chama fun��o que printa lista de disciplinas
+            printaListaDisc(node->head); // Chama função que printa lista de disciplinas
             printf("Aperte ENTER para continuar.\n");
             getchar();
             scanf("%c", &continuar);
@@ -62,7 +62,7 @@ void menuAluno(nodeAluno *node){
             printf("Nome da Disciplina: ");
             getchar();
             scanf("%[^\n]", pesquisa);
-            nodeDisciplina *busca = buscaDisciplina(node->head, pesquisa); //declarando variavel respons�vel por receber n� com nome pesquisado
+            nodeDisciplina *busca = buscaDisciplina(node->head, pesquisa); //declarando variavel responsável por receber nó com nome pesquisado
             if(busca == NULL){
                 printf("Disciplina nao encontrada.\n");
             }else{
@@ -79,7 +79,7 @@ void menuAluno(nodeAluno *node){
             printf("Nome da Disciplina: ");
             getchar();
             scanf("%[^\n]", pesquisa);
-            nodeDisciplina *aux = buscaDisciplina(node->head, pesquisa); //Declarando variavel respons�vel por receber n� com nome pesquisado
+            nodeDisciplina *aux = buscaDisciplina(node->head, pesquisa); //Declarando variavel responsável por receber nó com nome pesquisado
             eraseDisciplina(node->head, aux);
             printf("Aperte ENTER para continuar.\n");
             getchar();
@@ -93,7 +93,7 @@ void menuAluno(nodeAluno *node){
              do{
                 printf("Digite a mencao que deseja pesquisar: ");
                 getchar();
-                scanf("%[^\n]", pesquisa); //A fun��o de filtro ir� printar apenas as mat�rias cujas quais o aluno obteve esta men��o
+                scanf("%[^\n]", pesquisa); //A função de filtro irá printar apenas as matérias cujas quais o aluno obteve esta menção
 
 
                 if(strcmp(pesquisa,"SR")!=0&&strcmp(pesquisa,"TR")!=0&&strcmp(pesquisa,"II")!=0&&strcmp(pesquisa,"MI")!=0&&strcmp(pesquisa,"MM")!=0&&strcmp(pesquisa,"MS")!=0&&strcmp(pesquisa,"SS")!=0){
@@ -102,7 +102,7 @@ void menuAluno(nodeAluno *node){
 
             }while(strcmp(pesquisa,"SR")!=0&&strcmp(pesquisa,"TR")!=0&&strcmp(pesquisa,"II")!=0&&strcmp(pesquisa,"MI")!=0&&strcmp(pesquisa,"MM")!=0&&strcmp(pesquisa,"MS")!=0&&strcmp(pesquisa,"SS")!=0);
 
-            filtraDisciplina(node->head, pesquisa); //Chamando fun��o responsavel pelo filtro
+            filtraDisciplina(node->head, pesquisa); //Chamando função responsavel pelo filtro
             printf("Aperte ENTER para continuar.\n");
             getchar();
             scanf("%c", &continuar);
@@ -111,7 +111,7 @@ void menuAluno(nodeAluno *node){
         //RELATORIO GERAL---------------------------------------------------------------------------------------------
         case 6:
             system("clear");
-            relatorioGeral(node->head); //chama fun��o de relatorio geral
+            relatorioGeral(node->head); //chama função de relatorio geral
         break;
         //RETORNA AO MENU PRINCIPAL------------------------------------------------------------------------------------
         case 0:
@@ -138,7 +138,7 @@ void menu(listAluno *list){
     char *pesquisa, continuar;
     pesquisa = (char*)malloc(sizeof(char)*50);
 
-    //Estrutura de repeti��o respons�vel por rodar o menu.
+    //Estrutura de repetição responsável por rodar o menu.
     do{
 
         printf("Menu - Gerenciamento de Alunos");
@@ -155,20 +155,20 @@ void menu(listAluno *list){
         //CADASTRO----------------------------------------------------------------------------------------------
         case 1:
             system("clear");
-            node = criaNodeAluno(); //Chama fun��o de cria��o de n� para aluno novo.
+            node = criaNodeAluno(); //Chama função de criação de nó para aluno novo.
             pushAluno(list, node);  //Insere novo aluno na lista.
         break;
         //lISTAGEM----------------------------------------------------------------------------------------------
         case 2:
-            printaListaAlunos(list); //Chama a fun��o que printa a lista de alunos j� cadastrados.
+            printaListaAlunos(list); //Chama a função que printa a lista de alunos já cadastrados.
             printf("Aperte ENTER para continuar.\n");
             getchar();
             scanf("%c", &continuar);
             system("clear");
         break;
-        //VISUALIZA��O DE ALUNO----------------------------------------------------------------------------------------------
+        //VISUALIZAÇÃO DE ALUNO----------------------------------------------------------------------------------------------
         case 3:
-            if(isEmptyAluno(list)){ //Verificando se j� existem alunos cadastrados antes de iniciar busca.
+            if(isEmptyAluno(list)){ //Verificando se já existem alunos cadastrados antes de iniciar busca.
                 system("clear");
                 printf("Sem Alunos Registrados!\n");
                 printf("Aperte ENTER para continuar.\n");
@@ -203,7 +203,7 @@ void menu(listAluno *list){
                     printf("Nome: ");
                     getchar();
                     scanf("%[^\n]", pesquisa);
-                    node = buscaNomeAluno(list, pesquisa); //Declarando variavel respons�vel por receber n� com nome pesquisado
+                    node = buscaNomeAluno(list, pesquisa); //Declarando variavel responsável por receber nó com nome pesquisado
                     if(node == NULL){
                     }else{
                         menuAluno(node);
@@ -214,7 +214,7 @@ void menu(listAluno *list){
                     printf("Email: ");
                     getchar();
                     scanf("%[^\n]", pesquisa);
-                    node = buscaEmail(list, pesquisa); //Declarando variavel respons�vel por receber n� com email pesquisado
+                    node = buscaEmail(list, pesquisa); //Declarando variavel responsável por receber nó com email pesquisado
                     if(node == NULL){
                     }else{
                         menuAluno(node);
@@ -225,7 +225,7 @@ void menu(listAluno *list){
                     printf("Lembre-se, o indice comeca a ser contado do 0.\n");
                     printf("Indice: ");
                     scanf("%d", &pos);
-                    node = alunoAtPos(list, pos); //Declarando variavel respons�vel por receber n� com indice pesquisado
+                    node = alunoAtPos(list, pos); //Declarando variavel responsável por receber nó com indice pesquisado
                     if(node == NULL){
                     }else{
                         menuAluno(node);
@@ -275,7 +275,7 @@ void menu(listAluno *list){
                 printf("Nome: ");
                 getchar();
                 scanf("%[^\n]", pesquisa);
-                node = buscaNomeAluno(list, pesquisa); //Declarando variavel responsável por receber nóa com nome pesquisado
+                node = buscaNomeAluno(list, pesquisa); //Declarando variavel responsável por receber nós com nome pesquisado
                 if(node == NULL){
                 }else{
                    editAluno(node);
@@ -286,7 +286,7 @@ void menu(listAluno *list){
                 printf("Email: ");
                 getchar();
                 scanf("%[^\n]", pesquisa);
-                node = buscaEmail(list, pesquisa); //Declarando variavel respons�vel por receber n� com email pesquisado
+                node = buscaEmail(list, pesquisa); //Declarando variavel responsável por receber nó com email pesquisado
                 if(node == NULL){
                 }else{
                    editAluno(node);
@@ -298,7 +298,7 @@ void menu(listAluno *list){
                 printf("Indice: ");
                 getchar();
                 scanf("%d", &pos);
-                node = alunoAtPos(list, pos); //Declarando variavel respons�vel por receber n� com indice pesquisado
+                node = alunoAtPos(list, pos); //Declarando variavel responsável por receber nó com indice pesquisado
                 if(node == NULL){
                     printf("\nAluno nao encontrado.\n");
                 }else{
@@ -314,7 +314,7 @@ void menu(listAluno *list){
         break;
         //EXCLUSÃO DE ALUNO----------------------------------------------------------------------------------------------
         case 5:
-        if(isEmptyAluno(list)){ //Verificando se j� existem alunos cadastrados antes de iniciar busca.
+        if(isEmptyAluno(list)){ //Verificando se já existem alunos cadastrados antes de iniciar busca.
             system("clear");
             printf("Sem Alunos Registrados!\n");
             printf("Aperte ENTER para continuar.\n");
@@ -349,7 +349,7 @@ void menu(listAluno *list){
                 printf("Nome: ");
                 getchar();
                 scanf("%[^\n]", pesquisa);
-                node = buscaNomeAluno(list, pesquisa); //Declarando variavel respons�vel por receber n� com nome pesquisado
+                node = buscaNomeAluno(list, pesquisa); //Declarando variavel responsável por receber nó com nome pesquisado
                 if(node == NULL){
                 }else{
                    eraseAluno(list, node);
@@ -360,7 +360,7 @@ void menu(listAluno *list){
                 printf("Email: ");
                 getchar();
                 scanf("%[^\n]", pesquisa);
-                node = buscaEmail(list, pesquisa); //Declarando variavel respons�vel por receber n� com email pesquisado
+                node = buscaEmail(list, pesquisa); //Declarando variavel responsável por receber nó com email pesquisado
                 if(node == NULL){
                 }else{
                    eraseAluno(list, node);
@@ -372,15 +372,15 @@ void menu(listAluno *list){
                 printf("Indice: ");
                 getchar();
                 scanf("%d", &pos);
-                node = alunoAtPos(list, pos); //Declarando variavel respons�vel por receber n� com indice pesquisado
+                node = alunoAtPos(list, pos); //Declarando variavel responsável por receber nó com indice pesquisado
                 char *nome = (char*)malloc(sizeof(char)*50);
                 nome = node->nome; //Variavel que recebe nome do aluno a ser deletado para futuramente infomar qual aluno foi removido.
                 if(node == NULL){
-                    printf("\nAluno nao encontrado.\n"); //o retorno null significa que o n� nao foi encontrado
+                    printf("\nAluno nao encontrado.\n"); //o retorno null significa que o nó nao foi encontrado
                 }else{
-                   eraseAluno(list, node);//Chamando fun��o de deletar
+                   eraseAluno(list, node);//Chamando função de deletar
                    printf("Aluno %s removido.\n", nome);
-                   //Senti a necessidade de utilizar essa variavel pois nesta parte do programa o nome do n� j� foi apagado
+                   //Senti a necessidade de utilizar essa variavel pois nesta parte do programa o nome do nó já  foi apagado
                    //e caso nao apresentasse o nome do aluno deletado o usuario nao saberia com certeza qual aluno foi removido.
                 }
             break;
