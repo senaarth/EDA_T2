@@ -3,20 +3,20 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "ED1_T2.h" //Biblioteca com as fun��es referentes as listas.
+#include "ED1_T2.h" //Biblioteca com as funções referentes as listas.
 
-//Declara��o das Fun��es de Menu
+//Declaração das Funções de Menu.
 void menuAluno(nodeAluno *node);
 void menu(listAluno *list);
 
 int main(){
     listAluno *listAluno = criaListaAluno();
     menu(listAluno);
-    freeLista(listAluno); //Libera Espa�o de memoria referente a lista de alunos e da lista de disciplinas de cada um deles no final do uso
+    freeLista(listAluno); //Libera o espaço de memória antes de finalizar o programa.
     return 0;
 }
 
-//Implementa��o das fun��es de menu.
+//Implementação das funções de menu.
 void menuAluno(nodeAluno *node){
     char continuar, *pesquisa;
     pesquisa = (char*)malloc(sizeof(char)*50);
@@ -27,7 +27,7 @@ void menuAluno(nodeAluno *node){
 
     int run = 1, op;
 
-    //Estrutura de repeti��o respons�vel por rodar o menu.
+    //Estrutura de repetição responsável por rodar o menu.
     do{
         printf("Menu do Aluno: %s", node->nome);
         printf("\n1. Cadastrar Disciplina");
@@ -238,9 +238,9 @@ void menu(listAluno *list){
             system("clear");
             }
         break;
-        //EDI��O DE ALUNO----------------------------------------------------------------------------------------------
+        //EDIÇÃO DE ALUNO----------------------------------------------------------------------------------------------
         case 4:
-        if(isEmptyAluno(list)){ //Verificando se j� existem alunos cadastrados antes de iniciar busca.
+        if(isEmptyAluno(list)){ //Verificando se já existem alunos cadastrados antes de iniciar busca.
                 system("clear");
                 printf("Sem Alunos Registrados!\n");
                 printf("Aperte ENTER para continuar.\n");
@@ -275,7 +275,7 @@ void menu(listAluno *list){
                 printf("Nome: ");
                 getchar();
                 scanf("%[^\n]", pesquisa);
-                node = buscaNomeAluno(list, pesquisa); //Declarando variavel respons�vel por receber n� com nome pesquisado
+                node = buscaNomeAluno(list, pesquisa); //Declarando variavel responsável por receber nóa com nome pesquisado
                 if(node == NULL){
                 }else{
                    editAluno(node);
@@ -312,7 +312,7 @@ void menu(listAluno *list){
             system("clear");
         }
         break;
-        //EXCLUS�O DE ALUNO----------------------------------------------------------------------------------------------
+        //EXCLUSÃO DE ALUNO----------------------------------------------------------------------------------------------
         case 5:
         if(isEmptyAluno(list)){ //Verificando se j� existem alunos cadastrados antes de iniciar busca.
             system("clear");
