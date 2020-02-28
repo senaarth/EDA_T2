@@ -152,19 +152,8 @@ void printaListaDisc(listDisciplina *list){
     }
 }
 
-//Funçoes pop - removem primeiro integrante das listas
-void popAluno(listAluno *list){
-    system("clear");
-    if(list->size == 0){
-        printf("Lista sem elementos para remover.");
-        return;
-    }
-
-    nodeAluno *aux = list->head;
-    list->head = aux->next; //Transforma segundo integrante em head da lista
-    free(aux); //Limpa o espaço de memoria referente ao head antigo
-    list->size--;
-}
+//Funçoes Pop - removem primeiro integrante das listas
+//Funções Free - limpam o espaço de memória
 void popDisciplina(listDisciplina *list){
     system("clear");
     if(list->size == 0){
@@ -176,6 +165,61 @@ void popDisciplina(listDisciplina *list){
     list->head = aux->next; //Transforma segundo integrante em head da lista
     free(aux); //Limpa o espaço de memoria referente ao head antigo
     list->size--;
+}
+void freeDisciplinas(listDisciplina *list){
+    //lista vazia nao precisa de free
+    if(isEmptyDisc(list)){
+        return;
+    }
+    //lista com size 1 so precisamos remover o head
+    if(list->size == 1){
+        popDisciplina(list);
+        return;
+    }
+
+    while(!isEmptyDisc(list)){
+        popDisciplina(list);
+    }
+    
+}
+void popAluno(listAluno *list){
+    system("clear");
+    if(list->size == 0){
+        printf("Lista sem elementos para remover.");
+        return;
+    }
+
+    nodeAluno *aux = list->head;
+
+    freeDisciplinas(aux->head);
+
+    list->head = aux->next; //Transforma segundo integrante em head da lista
+    free(aux); //Limpa o espaço de memoria referente ao head antigo
+    list->size--;
+}
+void freeLista(listAluno *list){
+    //lista vazia nao precisa de free
+    if(isEmptyAluno(list)){
+        return;
+    }
+    //Se a lista tiver apenas um nó so precisamos dar free no head
+    if(list->size == 1){
+        nodeAluno *aux = list->head;
+        freeDisciplinas(aux->head);
+        free(aux);
+        return;
+    }
+    
+    nodeAluno *aux = list->head;
+
+    while(aux->next){
+        freeDisciplinas(aux->head);
+        aux = aux->next;
+    }
+
+    while(!isEmptyAluno(list)){
+        popAluno(list);
+    }
 }
 
 //Funções atPos - retornam nó encontrado em indice especifico recebido do usuario
@@ -645,49 +689,4 @@ void relatorioGeral(listDisciplina *list){
     char continuar;
     scanf("%c", &continuar);
     system("clear");
-}
-
-//Limpa memoria
-void freeDisciplinas(listDisciplina *list){
-    //lista vazia nao precisa de free
-    if(isEmptyDisc(list)){
-        return;
-    }
-    //lista com size 1 so precisamos remover o head
-    if(list->size == 1){
-        nodeDisciplina *aux = list->head;
-        free(aux);
-        return;
-    }
-    nodeDisciplina *aux = list->head;
-    nodeDisciplina *aux2 = aux->next;
-    while(aux2){
-        list->head = aux2;
-        free(aux);
-        aux = aux2;
-        aux2 = aux2->next;
-    }
-}
-void freeLista(listAluno *list){
-    //lista vazia nao precisa de free
-    if(isEmptyAluno(list)){
-        return;
-    }
-    //Se a lista tiver apenas um nó so precisamos dar free no head
-    if(list->size == 1){
-        nodeAluno *aux = list->head;
-        freeDisciplinas(aux->head);
-        free(aux);
-        return;
-    }
-
-    nodeAluno *aux = list->head;
-    nodeAluno *aux2 = aux->next;
-    while(aux2){
-        list->head = aux2;
-        freeDisciplinas(aux->head);
-        free(aux);
-        aux = aux2;
-        aux2 = aux2->next;
-    }
 }
