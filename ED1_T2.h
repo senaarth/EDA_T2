@@ -385,7 +385,6 @@ nodeDisciplina *buscaDisciplina(listDisciplina *list, char *pesquisa){
     }
 
     if(contador == 0){ //contador = 0 significa que nenhuma disciplina possui nome pesquisado
-        printf("Aluno nao encontrado.\n");
         return NULL;
     }
 
@@ -582,6 +581,7 @@ void eraseDisciplina(listDisciplina *list, nodeDisciplina *node){
             }
         }
         printf("Disciplina Removida!\n");
+        list->size--;
         free(aux);
     }
 }
